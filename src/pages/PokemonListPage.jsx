@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo, useCallback } from "react";
 import { Link } from "react-router-dom";
+import LayoutPage from "./LayoutPage";
 function PokemonListPage() {
   const [pokemons, setPokemons] = useState([]);
   const [loding, setLoding] = useState(true);
@@ -54,30 +55,34 @@ function PokemonListPage() {
 
   return (
     <>
-      <h1>포켓몬 도감 리스트</h1>
-      {/* 카운트가 변경되면 forPrintPokemons 가 계속 실행되지만 useMemo 를 통해 필요할때만 수정되도록 할 수 있다 */}
-      count: <button onClick={() => setCount(count + 1)}>{count}</button>
-      offset: {offset}
-      {offset > 0 && <button onClick={showPrev}>이전</button>}
-      <ul>
-        {forPrintPokemons.map((pokemon, index) => (
-          <li
-            key={index}
-            style={{
-              display: "flex",
-              alignItems: "center",
-              borderButtom: "1px solid black",
-            }}
-          >
-            <span>{pokemon.imgNumber}</span>
-            <img src={pokemon.imgUrl} alt="포켓몬이미지" />
-            <Link to={`/pokemons/${pokemon.imgNumber}`}>
-              <span>{pokemon.name}</span>
-            </Link>
-          </li>
-        ))}
-      </ul>
-      {totalCount > offset + limit && <button onClick={showNext}>다음</button>}
+      <LayoutPage>
+        <h1>포켓몬 도감 리스트</h1>
+        {/* 카운트가 변경되면 forPrintPokemons 가 계속 실행되지만 useMemo 를 통해 필요할때만 수정되도록 할 수 있다 */}
+        count: <button onClick={() => setCount(count + 1)}>{count}</button>
+        offset: {offset}
+        {offset > 0 && <button onClick={showPrev}>이전</button>}
+        <ul>
+          {forPrintPokemons.map((pokemon, index) => (
+            <li
+              key={index}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                borderButtom: "1px solid black",
+              }}
+            >
+              <span>{pokemon.imgNumber}</span>
+              <img src={pokemon.imgUrl} alt="포켓몬이미지" />
+              <Link to={`/pokemons/${pokemon.imgNumber}`}>
+                <span>{pokemon.name}</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+        {totalCount > offset + limit && (
+          <button onClick={showNext}>다음</button>
+        )}
+      </LayoutPage>
     </>
   );
 }

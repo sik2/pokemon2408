@@ -1,5 +1,13 @@
+import LayoutPage from "./LayoutPage";
+
 function MainPage() {
-  return <>메인페이지</>;
+  return (
+    <>
+      <LayoutPage>
+        <h1>메인페이지</h1>
+      </LayoutPage>
+    </>
+  );
 }
 
 export default MainPage;

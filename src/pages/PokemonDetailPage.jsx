@@ -1,9 +1,11 @@
-import { useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 
 function PokemonDetailPage() {
   const { id } = useParams();
+  const navigate = useNavigate();
   return (
     <>
+      <button onClick={() => navigate(-1)}>뒤로가기</button>
       <div>
         <h1>포켓몬 상세페이지</h1>
         <div>ID: {id}</div>

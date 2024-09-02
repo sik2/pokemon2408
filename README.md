@@ -9,4 +9,5 @@
 - [x] 컴포넌트 최적화 작업 useCallback
 - [x] 의존모듈 설치 React-Router main, list, detail 라우팅 처리
 - [x] 상세페이지 구현
+- [x] 네이바 레이아웃 작업
 - [ ] 테일윈드 CDN 도입 디자인 개선
