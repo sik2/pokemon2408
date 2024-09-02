@@ -40,25 +40,25 @@ function App() {
       offset: {offset}
       {offset > 0 && <button onClick={showPrev}>이전</button>}
       <ul>
-        {pokemons.map((pokemon, index) => (
-          <li
-            key={index}
-            style={{
-              display: "flex",
-              alignItems: "center",
-              borderButtom: "1px solid black",
-            }}
-          >
-            <span>{getNumberFromUrl(pokemon.url)}</span>
-            <img
-              src={`https://cdn.jsdelivr.net/gh/PokeAPI/sprites/sprites/pokemon/${getNumberFromUrl(
-                pokemon.url
-              )}.png`}
-              alt="포켓몬이미지"
-            />
-            <span>{pokemon.name}</span>
-          </li>
-        ))}
+        {pokemons.map((pokemon, index) => {
+          const imgNumber = getNumberFromUrl(pokemon.url);
+          const imgUrl = `https://cdn.jsdelivr.net/gh/PokeAPI/sprites/sprites/pokemon/${imgNumber}.png`;
+
+          return (
+            <li
+              key={index}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                borderButtom: "1px solid black",
+              }}
+            >
+              <span>{imgNumber}</span>
+              <img src={imgUrl} alt="포켓몬이미지" />
+              <span>{pokemon.name}</span>
+            </li>
+          );
+        })}
       </ul>
       {totalCount > offset + limit && <button onClick={showNext}>다음</button>}
     </>
