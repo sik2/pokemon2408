@@ -14,6 +14,12 @@ function App() {
     setOffset(offset + limit);
   };
 
+  const getNumberFromUrl = (url) => {
+    const urlList = url.split("/");
+    console.log(urlList);
+    return parseInt(urlList[urlList.length - 2]);
+  };
+
   useEffect(() => {
     setLoding(true);
     fetch(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`)
@@ -35,7 +41,23 @@ function App() {
       {offset > 0 && <button onClick={showPrev}>이전</button>}
       <ul>
         {pokemons.map((pokemon, index) => (
-          <li key={index}>{pokemon.name}</li>
+          <li
+            key={index}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              borderButtom: "1px solid black",
+            }}
+          >
+            <span>{getNumberFromUrl(pokemon.url)}</span>
+            <img
+              src={`https://cdn.jsdelivr.net/gh/PokeAPI/sprites/sprites/pokemon/${getNumberFromUrl(
+                pokemon.url
+              )}.png`}
+              alt="포켓몬이미지"
+            />
+            <span>{pokemon.name}</span>
+          </li>
         ))}
       </ul>
       {totalCount > offset + limit && <button onClick={showNext}>다음</button>}
