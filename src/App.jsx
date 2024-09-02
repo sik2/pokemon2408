@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 function App() {
   const [pokemons, setPokemons] = useState([]);
   const [loding, setLoding] = useState(true);
@@ -8,13 +8,13 @@ function App() {
   const totalCount = 1302;
   const limit = 30;
 
-  const showPrev = () => {
+  const showPrev = useCallback(() => {
     setOffset(offset - limit);
-  };
+  }, [offset]);
 
-  const showNext = () => {
+  const showNext = useCallback(() => {
     setOffset(offset + limit);
-  };
+  }, [offset]);
 
   const getNumberFromUrl = (url) => {
     const urlList = url.split("/");
@@ -25,8 +25,7 @@ function App() {
   const forPrintPokemons = useMemo(
     () =>
       pokemons.map((pokemon) => {
-        console.log("hit", ++i);
-
+        // console.log("hit", ++i);
         const imgNumber = getNumberFromUrl(pokemon.url);
         const imgUrl = `https://cdn.jsdelivr.net/gh/PokeAPI/sprites/sprites/pokemon/${imgNumber}.png`;
         return {
