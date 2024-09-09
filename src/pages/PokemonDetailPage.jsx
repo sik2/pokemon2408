@@ -5,14 +5,22 @@ function PokemonDetailPage() {
   const navigate = useNavigate();
   return (
     <>
-      <button onClick={() => navigate(-1)}>뒤로가기</button>
-      <div>
-        <h1>포켓몬 상세페이지</h1>
-        <div>ID: {id}</div>
-        <img
-          src={`https://cdn.jsdelivr.net/gh/PokeAPI/sprites/sprites/pokemon/${id}.png`}
-          alt="포켓몬 이미지"
-        />
+      <h1>포켓몬 상세페이지</h1>
+      <div className="card card-side bg-base-100 shadow-xl">
+        <figure>
+          <div className="badge badge-success m-5">{id}</div>
+          <img
+            src={`https://cdn.jsdelivr.net/gh/PokeAPI/sprites/sprites/pokemon/${id}.png`}
+            alt="포켓몬 이미지"
+          />
+        </figure>
+        <div className="card-body">
+          <div className="card-actions justify-end">
+            <button className="btn btn-primary" onClick={() => navigate(-1)}>
+              뒤로가기
+            </button>
+          </div>
+        </div>
       </div>
     </>
   );
